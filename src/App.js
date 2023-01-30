@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import FillLeaves from './components/FillLeaves';
+import ViewScreenshot from './components/ViewScreenshot';
+import AllStatements from './components/AllStatements';
+import Home from './components/Home';
+import Help from './components/Help';
+import Login from './components/Login';
+import LoadingBar from 'react-top-loading-bar'
 
-function App() {
+
+export default function App() {
+  let apiServer = "http://localhost/absentee-react/backend/";
+  const [progress, setProgress] = useState(0);
+  const [logins, setLogins] = useState({ 'loggedinSection': 'none', 'adminKey': 'none' });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <LoadingBar color='red' progress={progress} onLoaderFinished={() => setProgress(0)} />
+      <Routes>
+        <Route exact path="/" element={<Home apiServer={apiServer} setProgress={setProgress} />} />
+        <Route path="/fill-leaves" element={<FillLeaves apiServer={apiServer} setProgress={setProgress} logins={logins} setLogins={setLogins} />} />
+        <Route path="/all-statements" element={<AllStatements apiServer={apiServer} setProgress={setProgress} logins={logins} setLogins={setLogins} />} />
+        <Route path="/view-screenshot" element={<ViewScreenshot apiServer={apiServer} setProgress={setProgress} logins={logins} setLogins={setLogins} />} />
+        <Route path="/help" element={<Help apiServer={apiServer} logins={logins} setLogins={setLogins} />} />
+        <Route path="/login" element={<Login apiServer={apiServer} setProgress={setProgress} logins={logins} setLogins={setLogins} />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
-
-export default App;
