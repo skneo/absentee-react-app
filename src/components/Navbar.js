@@ -10,7 +10,7 @@ export default function Navbar(props) {
     }
     return (
         <>
-            <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+            <nav className='navbar navbar-expand-lg navbar-dark bg-dark fixed-top'>
                 <div className='container-fluid text-center'>
                     <Link className='navbar-brand active' to='/'>Absentee</Link>
                     <button className='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
@@ -76,7 +76,7 @@ export default function Navbar(props) {
                     </div>
                 </div>
             </nav>
-            <div className="text-center text-primary h4">
+            <div className="text-center text-primary h4" style={{ 'paddingTop': '60px' }}>
                 Section: {props.section.toUpperCase()}
             </div>
         </>

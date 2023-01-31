@@ -199,9 +199,9 @@ session_start();
     <div class='container mb-5'>
         <?php
         if ((isset($_SESSION[$section . 'loggedin']) or isset($_SESSION['adminloggedin']))) {
-            echo "<a href='all_statements.php?section=$section' class='btn btn-primary btn-sm mt-2'>&larr; Back</a>";
+            echo "<a href='/all-statements?section=$section' class='btn btn-primary btn-sm mt-2'>&larr; Back</a>";
         } else {
-            echo "<a href='fill_leaves.php?section=$section' class='btn btn-primary btn-sm mt-2'>&larr; Back</a>";
+            echo "<a href='/fill-leaves?section=$section' class='btn btn-primary btn-sm mt-2'>&larr; Back</a>";
         }
         echo "<p class='mt-2'><b>Employee Name:</b> $emp_name <br> <b> Employee Number:</b> $emp_num</p>";
         ?>

@@ -27,6 +27,7 @@ export default function FillLeaves(props) {
     function addRows() {
         let rows = leaveRows;
         setLeaveRows(rows.concat(formData.total_rows))
+        setFormData(values => ({ ...values, [`from_${formData.total_rows}`]: '', [`to_${formData.total_rows}`]: '', [`leave_type_${formData.total_rows}`]: 'NA', }))
         setFormData(values => ({ ...values, ['total_rows']: formData.total_rows + 1 }))
         // console.log(formData)
     }
