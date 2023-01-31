@@ -15,6 +15,7 @@ export default function FillLeaves(props) {
     const [leaveRows, setLeaveRows] = useState([0])
     const [errorMessage, seterrorMessage] = useState('none')
     const [disableSubmitBtn, setdisableSubmitBtn] = useState(true)
+    const [allSubmitted, setallSubmitted] = useState(false)
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -80,8 +81,10 @@ export default function FillLeaves(props) {
         props.setProgress(80);
         setNot_submitted(parsedData.not_submitted)
         setDeletedFiles(parsedData.deletedFiles)
+        if (parsedData.not_submitted.length === 0) {
+            setallSubmitted(true)
+        }
         props.setProgress(100);
-        // console.log(not_submitted)
     }
     useEffect(() => {
         function getCookie(cname) {
@@ -121,25 +124,20 @@ export default function FillLeaves(props) {
         let fileSize = document.getElementById('fileToUpload').files[0].size / (1024);
         if (fileSize < 1024) {
             setdisableSubmitBtn(false)
-            // document.getElementById("submitBtn").disabled = false;
             document.getElementById("fileErrror").style.display = "none";
         } else {
-            // document.getElementById("submitBtn").disabled = true;
             setdisableSubmitBtn(true)
             document.getElementById("fileErrror").style.display = "block";
         }
     }
 
-    // function showLoader() {
-    //     document.getElementById('pageLoader').classList.remove('d-none');
-    // }
     return (
         <>
             <Navbar section={section} loggedinSection={props.logins.loggedinSection} setLogins={props.setLogins} />
             {/* deleted files */}
             {(errorMessage !== 'none') && <Alert alertType='danger' alertMessage={errorMessage} />}
             {(deletedFiles !== 0) && <Alert alertType='success' alertMessage={`${deletedFiles} files older than 100 days deleted from Old Data`} />}
-            {(not_submitted.length === 0) && <Alert alertType='success' alertMessage='Leave statement submitted by all employees' />}
+            {allSubmitted && <Alert alertType='success' alertMessage='Leave statement submitted by all employees' />}
             <div className='alert alert-info py-2' role='alert'>
                 <strong>स्क्रीनशॉट Crop करके ही अपलोड करें <a target='_blank' href="sample.jpg">( सैंपल देखें )</a></strong>
             </div>

@@ -55,7 +55,7 @@ export default function Navbar(props) {
                                     <li><a href='reset_password.php?section=admin' className='dropdown-item' >Reset others's Password</a></li>
                                     <li><a className='dropdown-item ' href='add_delete_section.php?section=admin'>Add/Delete Section</a></li>
                                     <li><a className='dropdown-item ' href='notifications.php?section=admin'>Enable Notifications</a></li>
-                                    <li><a className='dropdown-item ' href='logout.php?section=admin'>Logout Admin</a></li>
+                                    <li><button className='dropdown-item ' onClick={logout}>Logout Admin</button></li>
                                 </ul>
                             </div>
                         }

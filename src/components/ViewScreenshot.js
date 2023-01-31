@@ -110,7 +110,7 @@ export default function ViewScreenshot(props) {
                 <p className='mt-2'><b>Employee Name:</b> {empData[0]} <br /> <b> Employee Number:</b> {emp_num}</p>
                 <b>ESS Screenshot</b>
 
-                {(section === props.logins.loggedinSection) && (empData[3] === 0) && <a href={`edit_record.php?section=${section}&changeScreenshot=${emp_num}`} className='btn btn-info btn-sm ms-2'>Change </a>}
+                {(lock === 0) && (props.logins.loggedinSection === section) && <a href={`edit_record.php?section=${section}&changeScreenshot=${emp_num}`} className='btn btn-info btn-sm ms-2'>Change </a>}
 
                 <div style={{ 'maxHeight': '800px' }} className='overflow-auto'> <img src={props.apiServer + `${section}/uploads/${empData[2]}`} style={{ 'width': '1080px', 'borderRadius': '20px' }} className='mt-2' alt='ESS Screenshot' /></div>
 
@@ -129,7 +129,7 @@ export default function ViewScreenshot(props) {
                         </tbody>
                     </table>
 
-                    {(section === props.logins.loggedinSection) && (empData[3] === 0) && <a href={`edit_record.php?section=${section}&editTable=${emp_num}`} className='btn btn-info btn-sm mb-3'>Edit Table</a>}
+                    {(lock === 0) && (props.logins.loggedinSection === section) && <a href={`edit_record.php?section=${section}&editTable=${emp_num}`} className='btn btn-info btn-sm mb-3'>Edit Table</a>}
 
                     {(lock === 0) && (props.logins.loggedinSection === section) && <div className='row my-3'>
                         <div className='col'>

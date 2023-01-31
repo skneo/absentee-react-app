@@ -15,6 +15,7 @@ export default function AllStatements(props) {
     const [locked, setlocked] = useState(0)
     const [remark, setremark] = useState('NA')
     const [disableSubmitBtn, setdisableSubmitBtn] = useState(true)
+    const [dataLockForm, setdataLockForm] = useState(false)
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     let d = new Date()
     let fromDate = `16-${months[d.getMonth()]}-${d.getFullYear()}`;
@@ -129,6 +130,7 @@ export default function AllStatements(props) {
         }
         return rows;
     })
+    const myTimeout = setTimeout(() => { setdataLockForm((locked === 0) && (verifyPending === 0) && (not_submitted.length === 0)) }, 3000);
 
     return (
         <>
@@ -181,7 +183,7 @@ export default function AllStatements(props) {
                 {(locked === 0) && <p><b>Note: </b> Data not submitted to HR</p>}
                 {(verifyPending === 1) && <p><b>Note: </b>Entries shown with black fonts needs verification</p>}
                 {/* showing lock data form */}
-                {(locked === 0) && (verifyPending === 0) && (not_submitted.length === 0) && <>
+                {dataLockForm && <>
                     <div className='form-check'>
                         <input type='checkbox' className='form-check-input' id='checkbtn' onChange={(e) => setdisableSubmitBtn(!e.target.checked)} />
                         <label className='form-check-label' htmlFor='checkbtn'>

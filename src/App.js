@@ -14,7 +14,8 @@ import LoadingBar from 'react-top-loading-bar'
 
 
 export default function App() {
-  let apiServer = "http://localhost/absentee-react/backend/";
+  // let apiServer = "http://localhost/absentee-react/backend/";
+  let apiServer = "https://matrixe.in/";
   const [progress, setProgress] = useState(0);
   const [logins, setLogins] = useState({ 'loggedinSection': 'none', 'adminKey': 'none' });
   return (
