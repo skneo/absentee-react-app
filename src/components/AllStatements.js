@@ -15,6 +15,7 @@ export default function AllStatements(props) {
     const [locked, setlocked] = useState(0)
     const [remark, setremark] = useState('NA')
     const [disableSubmitBtn, setdisableSubmitBtn] = useState(true)
+    const [pendingSubmition, setpendingSubmition] = useState(true)
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     let d = new Date()
     let fromDate = `16-${months[d.getMonth()]}-${d.getFullYear()}`;
@@ -56,6 +57,7 @@ export default function AllStatements(props) {
         props.setProgress(80);
         setAbsentee(parsedData.absentee)
         setEmployees(parsedData.employees)
+        setpendingSubmition(!(parsedData.employees.length === Object.keys(parsedData.absentee).length))
         setofficerName(parsedData.officerName)
         setinchargeName(parsedData.inchargeName)
         setinchargeEmpNo(parsedData.inchargeEmpNo)
@@ -68,7 +70,6 @@ export default function AllStatements(props) {
             navigate('/login?section=' + section)
         } else {
             getData();
-
         }
     }, [])
     let sn = 0;
@@ -84,7 +85,7 @@ export default function AllStatements(props) {
             let verified = '';
             if (verification === 1)
                 verified = 'text-success';
-            else
+            else if (verifyPending === 0)
                 verifyPending = 1;
             for (var i = 0; i < totalSlots; i++) {
                 let date1 = new Date(leaveData[i][0]);
@@ -181,7 +182,7 @@ export default function AllStatements(props) {
                 {(locked === 0) && <p><b>Note: </b> Data not submitted to HR</p>}
                 {(verifyPending === 1) && <p><b>Note: </b>Entries shown with black fonts needs verification</p>}
                 {/* showing lock data form */}
-                {(locked === 0) && (verifyPending === 0) && (not_submitted.length === 0) && <>
+                {(locked === 0) && (verifyPending === 0) && (!pendingSubmition) && <>
                     <div className='form-check'>
                         <input type='checkbox' className='form-check-input' id='checkbtn' onChange={(e) => setdisableSubmitBtn(!e.target.checked)} />
                         <label className='form-check-label' htmlFor='checkbtn'>
