@@ -11,8 +11,8 @@ if (isset($_POST['password'])) {
     if ($_POST['password'] === $password) {
         $_SESSION[$section . 'loggedin'] = true;
         if ($section == 'admin') {
-            header("Location: fill_leaves.php?section=admin");
-        } else header("Location: all_statements.php?section=$section");
+            header("Location: fill-leaves?section=admin");
+        } else header("Location: all-statements?section=$section");
     } else {
         $showAlert = true;
         $alertClass = "alert-danger";

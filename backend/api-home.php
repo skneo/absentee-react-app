@@ -6,7 +6,7 @@ $totalEmployees = 0;
 $sections = array();
 foreach (glob('./*', GLOB_ONLYDIR) as $dir) {
     $dirname = basename($dir);
-    if ($dirname == '__MACOSX' || $dirname == 'zip_files')
+    if ($dirname == '__MACOSX' || $dirname == 'zip_files' || $dirname == 'static' || $dirname == 'subdomains')
         continue;
     $displayDir = strtoupper(($dirname));
     $employees = file_get_contents("$dirname/employees.json");

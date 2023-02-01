@@ -6,7 +6,7 @@ export default function Navbar(props) {
         props.setLogins({ 'loggedinSection': 'none', 'adminKey': 'none' })
         document.cookie = "loggedinSection=" + 'none';
         document.cookie = "adminKey=" + 'none';
-        navigate('/fill-leaves?section=' + props.section)
+        window.open(`logout.php?section=${props.loggedinSection}`, "_self")
     }
     return (
         <>

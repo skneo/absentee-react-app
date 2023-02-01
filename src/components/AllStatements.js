@@ -64,7 +64,7 @@ export default function AllStatements(props) {
         props.setProgress(100);
     }
     useEffect(() => {
-        if (props.logins.loggedinSection !== section) {
+        if (!(props.logins.loggedinSection === section || props.logins.loggedinSection === 'admin')) {
             navigate('/login?section=' + section)
         } else {
             getData();
