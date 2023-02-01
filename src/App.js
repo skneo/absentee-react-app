@@ -12,7 +12,6 @@ import Help from './components/Help';
 import Login from './components/Login';
 import LoadingBar from 'react-top-loading-bar'
 
-
 export default function App() {
   // let apiServer = "http://localhost/absentee-react/backend/";
   let apiServer = "https://matrixe.in/";

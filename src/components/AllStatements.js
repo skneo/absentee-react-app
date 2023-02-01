@@ -190,7 +190,7 @@ export default function AllStatements(props) {
                         </label>
                     </div>
                     <label htmlFor='inchargeRemark' className='form-label float-start'>Remark</label>
-                    <textarea className='form-control mb-3' value={remark} onChange={(e) => setremark(e.target.value)} rows='3'></textarea>
+                    <textarea className='form-control mb-3' value={remark} onChange={(e) => setremark(e.target.value)} rows='2'></textarea>
                     <button id='submitbtn' disabled={disableSubmitBtn} onClick={handleLockReq} className='btn btn-danger mb-3' >Lock & Submit Data</button>
                     <br />
                     <b>Section Incharge:</b> {inchargeName} <br />

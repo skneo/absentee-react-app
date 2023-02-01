@@ -105,8 +105,8 @@ export default function ViewScreenshot(props) {
         <>
             <Navbar section={section} loggedinSection={props.logins.loggedinSection} setLogins={props.setLogins} />
             <div className='container mb-5'>
-                {(props.logins.loggedinSection !== section) && <Link to={`/fill-leaves?section=${section}`} className='btn btn-primary btn-sm mt-2'>&larr; Back</Link>}
-                {(props.logins.loggedinSection === section) && <Link to={`/all-statements?section=${section}`} className='btn btn-primary btn-sm mt-2'>&larr; Back</Link>}
+                {(props.logins.loggedinSection === 'none') && <Link to={`/fill-leaves?section=${section}`} className='btn btn-primary btn-sm mt-2'>&larr; Back</Link>}
+                {(props.logins.loggedinSection === section || props.logins.loggedinSection === 'admin') && <Link to={`/all-statements?section=${section}`} className='btn btn-primary btn-sm mt-2'>&larr; Back</Link>}
                 <p className='mt-2'><b>Employee Name:</b> {empData[0]} <br /> <b> Employee Number:</b> {emp_num}</p>
                 <b>ESS Screenshot</b>
 

@@ -27,7 +27,7 @@ export default function Login(props) {
                 document.cookie = "loggedinSection=" + data.loggedinSection;
                 document.cookie = "adminKey=" + data.adminKey;
                 if (data.loggedinSection === 'admin') {
-                    navigate('/fill-leaves?section=' + section)
+                    navigate('/fill-leaves?section=admin')
                 } else if (data.loggedinSection === section) {
                     navigate('/all-statements?section=' + section)
                 }
@@ -58,7 +58,7 @@ export default function Login(props) {
         if (loggedinSection !== 'none') {
             props.setLogins({ 'loggedinSection': loggedinSection, 'adminKey': adminKey });
             if (loggedinSection === 'admin') {
-                navigate('/fill-leaves?section=' + section)
+                navigate('/fill-leaves?section=admin')
             } else if (loggedinSection === section) {
                 navigate('/all-statements?section=' + section)
             }
