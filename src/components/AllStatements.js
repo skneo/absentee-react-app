@@ -21,6 +21,9 @@ export default function AllStatements(props) {
     let fromDate = `16-${months[d.getMonth()]}-${d.getFullYear()}`;
     let toDate = d.setDate(d.getDate() + 20);
     toDate = `15-${months[d.getMonth()]}-${d.getFullYear()}`;
+    const [showAlert, setshowAlert] = useState(false)
+    const [alertData, setalertData] = useState({})
+
     function copyTableLink() {
         let tableLink = window.location.href;
         navigator.clipboard.writeText(tableLink);
@@ -70,6 +73,11 @@ export default function AllStatements(props) {
             navigate('/login?section=' + section)
         } else {
             getData();
+            if (Object.keys(props.alerts).length > 0) {
+                setshowAlert(true)
+                setalertData({ 'alertType': props.alerts.alertType, 'alertMessage': props.alerts.alertMessage })
+                props.setalerts({})
+            }
         }
     }, [])
     let sn = 0;
@@ -134,6 +142,7 @@ export default function AllStatements(props) {
     return (
         <>
             <Navbar section={section} loggedinSection={props.logins.loggedinSection} setLogins={props.setLogins} />
+            {showAlert && <Alert alertType={alertData.alertType} alertMessage={alertData.alertMessage} />}
             {(locked === 1) && <Alert alertType='success' alertMessage="Data locked and submitted, don't forget to Export Table in Excel and Download All Screenshots" />}
             <div className="container my-3 mb-5">
                 <h4>Leave statements of all employees <span><button id='copyBtn' onClick={copyTableLink} className="btn btn-outline-primary btn-sm">Copy Link</button></span></h4>

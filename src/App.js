@@ -14,17 +14,18 @@ import LoadingBar from 'react-top-loading-bar'
 
 export default function App() {
   // let apiServer = "http://localhost/absentee-react/backend/";
-  let apiServer = "https://matrixe.in/";
+  let apiServer = "https://absentee.epizy.com/";
   const [progress, setProgress] = useState(0);
   const [logins, setLogins] = useState({ 'loggedinSection': 'none', 'adminKey': 'none' });
+  const [alerts, setalerts] = useState({});
   return (
     <BrowserRouter>
       <LoadingBar color='red' progress={progress} onLoaderFinished={() => setProgress(0)} />
       <Routes>
         <Route exact path="/" element={<Home apiServer={apiServer} setProgress={setProgress} />} />
         <Route path="/fill-leaves" element={<FillLeaves apiServer={apiServer} setProgress={setProgress} logins={logins} setLogins={setLogins} />} />
-        <Route path="/all-statements" element={<AllStatements apiServer={apiServer} setProgress={setProgress} logins={logins} setLogins={setLogins} />} />
-        <Route path="/view-screenshot" element={<ViewScreenshot apiServer={apiServer} setProgress={setProgress} logins={logins} setLogins={setLogins} />} />
+        <Route path="/all-statements" element={<AllStatements alerts={alerts} setalerts={setalerts} apiServer={apiServer} setProgress={setProgress} logins={logins} setLogins={setLogins} />} />
+        <Route path="/view-screenshot" element={<ViewScreenshot setalerts={setalerts} apiServer={apiServer} setProgress={setProgress} logins={logins} setLogins={setLogins} />} />
         <Route path="/help" element={<Help apiServer={apiServer} logins={logins} setLogins={setLogins} />} />
         <Route path="/login" element={<Login apiServer={apiServer} setProgress={setProgress} logins={logins} setLogins={setLogins} />} />
       </Routes>

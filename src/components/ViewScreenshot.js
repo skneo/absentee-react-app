@@ -9,7 +9,7 @@ export default function ViewScreenshot(props) {
     document.title = "View Screenshot - " + section.toUpperCase();
     const navigate = useNavigate();
     const [empData, setEmpData] = useState(['NA', [], 'NA', 0])
-    const [lock, setlock] = useState(0)
+    const [lock, setlock] = useState(1)
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const getData = async () => {
         props.setProgress(10);
@@ -57,6 +57,7 @@ export default function ViewScreenshot(props) {
             let parsedData = await data.json();
             props.setProgress(80);
             if (parsedData.verified === true) {
+                props.setalerts({ 'alertType': 'success', 'alertMessage': `Data verified of ${empData[0]} (${emp_num})` })
                 navigate('/all-statements?section=' + section)
             }
             props.setProgress(100);
@@ -72,6 +73,7 @@ export default function ViewScreenshot(props) {
             let parsedData = await data.json();
             props.setProgress(80);
             if (parsedData.deleted === true) {
+                props.setalerts({ 'alertType': 'success', 'alertMessage': `Data deleted of ${empData[0]} (${emp_num})` })
                 navigate('/all-statements?section=' + section)
             }
             props.setProgress(100);
@@ -93,7 +95,7 @@ export default function ViewScreenshot(props) {
             <td>{leaveTo}</td>
             <td>{Difference_In_Days}</td>
         </tr>
-    })
+    }).reverse()
     if (empData[1].length == 0)
         tableRows = <tr>
             <td>NIL</td>
@@ -109,9 +111,7 @@ export default function ViewScreenshot(props) {
                 {(props.logins.loggedinSection === section || props.logins.loggedinSection === 'admin') && <Link to={`/all-statements?section=${section}`} className='btn btn-primary btn-sm mt-2'>&larr; Back</Link>}
                 <p className='mt-2'><b>Employee Name:</b> {empData[0]} <br /> <b> Employee Number:</b> {emp_num}</p>
                 <b>ESS Screenshot</b>
-
                 {(lock === 0) && (props.logins.loggedinSection === section) && <a href={`edit_record.php?section=${section}&changeScreenshot=${emp_num}`} className='btn btn-info btn-sm ms-2'>Change </a>}
-
                 <div style={{ 'maxHeight': '800px' }} className='overflow-auto'> <img src={props.apiServer + `${section}/uploads/${empData[2]}`} style={{ 'width': '1080px', 'borderRadius': '20px' }} className='mt-2' alt='ESS Screenshot' /></div>
 
                 <div className="my-3">
