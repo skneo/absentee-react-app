@@ -88,6 +88,7 @@ export default function FillLeaves(props) {
         props.setProgress(100);
     }
     useEffect(() => {
+        window.scrollTo(0, 0)
         function getCookie(cname) {
             let name = cname + "=";
             let decodedCookie = decodeURIComponent(document.cookie);

@@ -95,31 +95,48 @@ export default function AllStatements(props) {
                 verified = 'text-success';
             else if (verifyPending === 0)
                 verifyPending = 1;
-            for (var i = 0; i < totalSlots; i++) {
-                let date1 = new Date(leaveData[i][0]);
-                let date2 = new Date(leaveData[i][1]);
+            if (totalSlots > 0) {
+                let date1 = new Date(leaveData[0][0]);
+                let date2 = new Date(leaveData[0][1]);
                 let Difference_In_Time = date2.getTime() - date1.getTime();
                 let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24) + 1;
-                let leaveDate = new Date(leaveData[i][0])
+                let leaveDate = new Date(leaveData[0][0])
                 let leaveFrom = leaveDate.getDate() + '-' + months[leaveDate.getMonth()] + '-' + leaveDate.getFullYear().toString().substring(2);
-                leaveDate = new Date(leaveData[i][1])
+                leaveDate = new Date(leaveData[0][1])
                 let leaveTo = leaveDate.getDate() + '-' + months[leaveDate.getMonth()] + '-' + leaveDate.getFullYear().toString().substring(2);
-                rows.push(<tr key={emp_name + i} className={verified}>
-                    <td>{sn} </td>
-                    <td> {emp_name.split('-')[0].trim()}</td>
-                    <td>{emp_name.split('-')[1].trim()} </td>
-                    <td>REGULAR </td>
-                    <td>{leaveData[i][2]}</td>
+                rows.push(<tr key={emp_name.split('-')[0].trim() + '-0'} className={verified}>
+                    <td rowSpan={totalSlots}>{sn} </td>
+                    <td rowSpan={totalSlots}> {emp_name.split('-')[0].trim()}</td>
+                    <td rowSpan={totalSlots}>{emp_name.split('-')[1].trim()} </td>
+                    <td rowSpan={totalSlots}>REGULAR </td>
+                    <td>{leaveData[0][2]}</td>
                     <td>{leaveFrom}</td>
                     <td>{leaveTo}</td>
                     <td>YES</td>
                     <td>{Difference_In_Days}</td>
-                    <td>{officerName}</td>
-                    <td><Link className='btn btn-outline-primary' to={`/view-screenshot?section=${section}&view_emp=${emp_name.split('-')[0].trim()}`}>View/Verify</Link></td>
-                </tr >)
+                    <td rowSpan={totalSlots}>{officerName}</td>
+                    <td rowSpan={totalSlots}><Link className='btn btn-outline-primary' to={`/view-screenshot?section=${section}&view_emp=${emp_name.split('-')[0].trim()}`}>View/Verify</Link></td>
+                </tr>)
+                for (var i = 1; i < totalSlots; i++) {
+                    let date1 = new Date(leaveData[i][0]);
+                    let date2 = new Date(leaveData[i][1]);
+                    let Difference_In_Time = date2.getTime() - date1.getTime();
+                    let Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24) + 1;
+                    let leaveDate = new Date(leaveData[i][0])
+                    let leaveFrom = leaveDate.getDate() + '-' + months[leaveDate.getMonth()] + '-' + leaveDate.getFullYear().toString().substring(2);
+                    leaveDate = new Date(leaveData[i][1])
+                    let leaveTo = leaveDate.getDate() + '-' + months[leaveDate.getMonth()] + '-' + leaveDate.getFullYear().toString().substring(2);
+                    rows.push(<tr key={emp_name.split('-')[0].trim() + '-' + i} className={verified}>
+                        <td>{leaveData[i][2]}</td>
+                        <td>{leaveFrom}</td>
+                        <td>{leaveTo}</td>
+                        <td>YES</td>
+                        <td>{Difference_In_Days}</td>
+                    </ tr>)
+                }
             }
-            if (totalSlots === 0) {
-                rows.push(<tr key={emp_name + i} className={verified}>
+            else {
+                rows.push(<tr key={emp_name.split('-')[0].trim()} className={verified}>
                     <td>{sn}</td>
                     <td>{emp_name.split('-')[0].trim()}</td>
                     <td>{emp_name.split('-')[1].trim()}</td>
