@@ -20,9 +20,11 @@ export default function Home(props) {
     }, [])
     return (
         <>
-            <div className="bg-dark text-light text-center h4 py-3" style={{ 'position': 'sticky', 'top': 0 }}>Absentee Portal</div>
-            <div className="container my-3  text-center ">
-                <h4>All Sections</h4><br />
+            <div className="bg-dark text-center h4 py-3" style={{ 'position': 'sticky', 'top': 0 }}>
+                <a href='/' className='text-decoration-none text-light'>Absentee Portal</a>
+            </div>
+            <div className="container my-3 text-center">
+                <h4><a href='/'>All Sections</a> </h4><br />
                 <center>
                     <div className="container col-xs-8 col-md-3">
                         {sections.map((element) => {
