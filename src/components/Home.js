@@ -29,7 +29,7 @@ export default function Home(props) {
                     <div className="container col-xs-8 col-md-3">
                         {sections.map((element) => {
                             return <div key={element.dirname}>
-                                <Link to={`/fill-leaves?section=${element.dirname}`} className={`mb-3 btn ${element.btnClass} w-100`}>{element.displayDir}</Link>
+                                <Link to={`/fill-leaves?section=${element.dirname}`} className={`mb-3 btn ${element.btnClass} w-100`}>{element.dirname.toUpperCase()}</Link>
                             </div>
                         })}
                     </div>

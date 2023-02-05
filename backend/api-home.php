@@ -8,7 +8,7 @@ foreach (glob('./*', GLOB_ONLYDIR) as $dir) {
     $dirname = basename($dir);
     if ($dirname == '__MACOSX' || $dirname == 'zip_files' || $dirname == 'static' || $dirname == 'subdomains')
         continue;
-    $displayDir = strtoupper(($dirname));
+    // $displayDir = strtoupper(($dirname));
     $employees = file_get_contents("$dirname/employees.json");
     $employees = json_decode($employees, true);
     $totalEmployees = $totalEmployees + count($employees);
@@ -22,7 +22,7 @@ foreach (glob('./*', GLOB_ONLYDIR) as $dir) {
     $section = array();
     $section['dirname'] = $dirname;
     $section['btnClass'] = $btnClass;
-    $section['displayDir'] = $displayDir;
+    // $section['displayDir'] = $displayDir;
     array_push($sections, $section);
 }
 $data = array();

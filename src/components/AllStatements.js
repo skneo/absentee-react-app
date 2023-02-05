@@ -107,7 +107,7 @@ export default function AllStatements(props) {
                 rows.push(<tr key={emp_name.split('-')[0].trim() + '-0'} className={verified}>
                     <td rowSpan={totalSlots}>{sn} </td>
                     <td rowSpan={totalSlots}> {emp_name.split('-')[0].trim()}</td>
-                    <td rowSpan={totalSlots}>{emp_name.split('-')[1].trim()} </td>
+                    <td rowSpan={totalSlots}><Link className={verified} to={`/view-screenshot?section=${section}&view_emp=${emp_name.split('-')[0].trim()}`}>{emp_name.split('-')[1].trim()}</Link> </td>
                     <td rowSpan={totalSlots}>REGULAR </td>
                     <td>{leaveData[0][2]}</td>
                     <td>{leaveFrom}</td>
@@ -139,7 +139,7 @@ export default function AllStatements(props) {
                 rows.push(<tr key={emp_name.split('-')[0].trim()} className={verified}>
                     <td>{sn}</td>
                     <td>{emp_name.split('-')[0].trim()}</td>
-                    <td>{emp_name.split('-')[1].trim()}</td>
+                    <td><Link className={verified} to={`/view-screenshot?section=${section}&view_emp=${emp_name.split('-')[0].trim()}`}>{emp_name.split('-')[1].trim()}</Link></td>
                     <td>REGULAR</td>
                     <td>NIL</td>
                     <td>NIL</td>
