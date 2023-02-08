@@ -4,6 +4,7 @@ export default function Home(props) {
     document.title = 'Absentee';
     const [sections, setSections] = useState([]);
     const [totalEmployees, setTotalEmployees] = useState(0);
+    let url = window.location.href;
     const showSections = async () => {
         props.setProgress(10);
         let url = props.apiServer + "api-home.php";
@@ -21,10 +22,10 @@ export default function Home(props) {
     return (
         <>
             <div className="bg-dark text-center h4 py-3" style={{ 'position': 'sticky', 'top': 0 }}>
-                <a href='/' className='text-decoration-none text-light'>Absentee Portal</a>
+                <a href={url} className='text-decoration-none text-light'>Absentee Portal</a>
             </div>
             <div className="container my-3 text-center">
-                <h4><a href='/'>All Sections</a> </h4><br />
+                <h4><a href={url}>All Sections</a> </h4><br />
                 <center>
                     <div className="container col-xs-8 col-md-3">
                         {sections.map((element) => {
