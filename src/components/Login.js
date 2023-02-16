@@ -26,10 +26,8 @@ export default function Login(props) {
                 props.setLogins({ 'loggedinSection': data.loggedinSection, 'adminKey': data.adminKey });
                 document.cookie = "loggedinSection=" + data.loggedinSection;
                 document.cookie = "adminKey=" + data.adminKey;
-                if (data.loggedinSection === 'admin') {
-                    navigate('/fill-leaves?section=admin')
-                } else if (data.loggedinSection === section) {
-                    navigate('/all-statements?section=' + section)
+                if (data.loggedinSection !== 'none') {
+                    window.open(`api-setSession.php?section=${data.loggedinSection}&key=${data.key}`, "_self")
                 }
                 setLoginFailed(data.loggedinSection !== section);
             })

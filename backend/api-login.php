@@ -4,6 +4,7 @@ $section = $_GET['section'];
 
 $loginTried = false;
 $loggedinSection = 'none';
+$key = 'none';
 $adminKey = 'none';
 include "$section/password.php";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -12,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $userPassword  =   $postData->password;
     if ($userPassword === $password) {
         $loggedinSection = $section;
+        $key = md5($password);
         if ($section == 'admin') {
             $adminKey = md5($userPassword);
         }
@@ -21,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-
 $data = array();
 $data['loggedinSection'] = $loggedinSection;
+$data['key'] = $key;
 $data['adminKey'] = $adminKey;
 $data['loginTried'] = $loginTried;
 
