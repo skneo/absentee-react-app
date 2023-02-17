@@ -56,9 +56,9 @@ export default function Login(props) {
         if (loggedinSection !== 'none') {
             props.setLogins({ 'loggedinSection': loggedinSection, 'adminKey': adminKey });
             if (loggedinSection === 'admin') {
-                navigate('/fill-leaves?section=admin')
-            } else if (loggedinSection === section) {
                 navigate('/all-statements?section=' + section)
+            } else {
+                navigate('/all-statements?section=' + loggedinSection)
             }
         }
     }, [])

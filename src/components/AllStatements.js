@@ -18,9 +18,10 @@ export default function AllStatements(props) {
     const [pendingSubmition, setpendingSubmition] = useState(true)
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     let d = new Date()
+    let toDate = `15-${months[d.getMonth()]}-${d.getFullYear()}`;
+    d.setMonth(d.getMonth() - 1);
     let fromDate = `16-${months[d.getMonth()]}-${d.getFullYear()}`;
-    let toDate = d.setDate(d.getDate() + 20);
-    toDate = `15-${months[d.getMonth()]}-${d.getFullYear()}`;
+
     const [showAlert, setshowAlert] = useState(false)
     const [alertData, setalertData] = useState({})
 
