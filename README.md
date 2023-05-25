@@ -1,7 +1,7 @@
 # Absentee app - collects leave statements
 * app for collecting leave statements of employees
 * Frontend in React, Bootstrap and backend in PHP
-* ##Main Features
+##Main Features
 * Admin can add sections/teams
 * Admin can add/remove employees in sections
 * Admin can lock/unlock sections to prevent/allow new entries by section employees
